@@ -93,7 +93,19 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     }
 
 
-    public Iterable<K> iterator() {
-
+    public Iterable<Node> iterator() {
+        ArrayList<Node> arrayList = inorderTraversal(new ArrayList<>(), root);
+        return arrayList;
+    }
+    private ArrayList<Node> inorderTraversal(ArrayList list, Node node) {
+        if(node == null) {
+            return null;
+        }
+        list.add(inorderTraversal(list, node.left));
+        list.add(node);
+        list.add(inorderTraversal(list, node.right));
+        return list;
     }
 }
+
+
